@@ -1,6 +1,6 @@
 import fs from 'fs/promises'
 export async function read(username, password) {
-    const res = await fs.readFile('db/data.json', "utf-8")
+    const res = await fs.readFile('./db/data.json', "utf-8")
     const data = JSON.parse(res)
     for (let user of data) {
         if (username === user.name && password === user.password) {
@@ -11,6 +11,3 @@ export async function read(username, password) {
 }
 
 
-export async function write() {
-    pass
-}

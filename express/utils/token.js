@@ -9,5 +9,11 @@ export function createToken(username, id) {
 
 
 export function verifyToken(token) {
-    return jwt.verify(token, secretKey)
+    return jwt.verify(token, secretKey, (err, success) => {
+        if (err) {
+            return false
+        }
+        return success
+    })
 }
+

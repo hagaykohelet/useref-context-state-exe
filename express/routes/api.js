@@ -12,13 +12,11 @@ apiRoute.post('/login', async (req, res) => {
                 const token = createToken(username, user.id)
                 return res.json({
                     token: token,
-                    operator: { name: username, id: data.id, role: data.role }
+                    operator: { name: username, id: user.id, role: user.role }
                 })
             }
         }
-
         res.json({ msg: "this name not found" })
-
     }
     catch (err) {
         res.send(String(err))
@@ -28,8 +26,16 @@ apiRoute.post('/login', async (req, res) => {
 apiRoute.get('/status', async (req, res) => {
     try {
         const token = req.headers.token
-        res.send(verifyToken(token))
-
+        const auth = verifyToken(token)
+        if (auth) {
+            return res.send({
+                checkpoint: "allowed",
+                isOpen: true,
+                trafficLevel: "normal",
+                lastUpdated: new Date().toISOString()
+            })
+        }
+        return res.send("this token not verify!")
     }
     catch (err) {
         res.send(String(err))
@@ -44,6 +50,9 @@ apiRoute.get('/messages', async (req, res) => {
             return res.json({ msg: "you need token" })
         }
         const verify = verifyToken(token)
+        if (!verify) {
+            return res.send("this token not verify!")
+        }
         const data = await read()
         for (let user of data) {
             if (user.id === verify.id && user.name === verify.name) {
@@ -62,9 +71,12 @@ apiRoute.post('/messages', async (req, res) => {
     try {
         const token = req.headers.token
         const verify = verifyToken(token)
+        if (!verify) {
+            return res.send("this token not verify!")
+        }
         const newMessage = req.body.text
-        const writeToFile = await writeMessage(newMessage, verify.id ,verify.name)
-        if(!writeToFile){
+        const writeToFile = await writeMessage(newMessage, verify.id, verify.name)
+        if (!writeToFile) {
             return res.send("fail to write")
         }
         return res.send('success')

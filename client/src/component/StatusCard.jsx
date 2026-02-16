@@ -2,7 +2,6 @@ import { useContext, useState } from "react"
 import { UserContext } from "../App"
 
 function StatusCard() {
-
     const {info, setInfo} = useContext(UserContext)
     const [show, setShow] = useState(false);
     const token = localStorage.getItem("token")

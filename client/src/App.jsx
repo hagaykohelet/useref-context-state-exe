@@ -3,6 +3,7 @@ import './App.css'
 import LoginPannel from './component/LoginPannel'
 import Navbar from './component/navbar'
 import StatusCard from './component/StatusCard'
+import CommsPanel from './component/CommsPanel'
 const UserContext = createContext()
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
         <Navbar />
         <LoginPannel />
         <StatusCard />
+        <CommsPanel />
       </UserContext>
     </div>
 

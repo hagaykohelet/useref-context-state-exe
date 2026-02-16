@@ -7,7 +7,9 @@
     "messages": [
       "newmessage here",
       "newmessage here",
-      "newmessage here 3"
+      "newmessage here 3",
+      "message from client",
+      "aaa"
     ]
   },
   {

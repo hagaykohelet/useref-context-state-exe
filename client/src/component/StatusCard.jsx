@@ -21,10 +21,10 @@ function StatusCard() {
         <div>
             <button onClick={getStatusCard}>get info</button>
             {show && <div className="asd">
-            <p>{info.checkpoint}</p>
-            <p>{info.isOpen? <span>true</span>:<span>false</span>}</p>
-            <p>{info.trafficLevel}</p>
-            <p>{info.lastUpdated}</p>
+            <p>checkpoint:{info.checkpoint}</p>
+            <p>isOpen:{info.isOpen? <span>true</span>:<span>false</span>}</p>
+            <p>trafficLevel:{info.trafficLevel}</p>
+            <p>lastUpdated:{info.lastUpdated}</p>
             <button onClick={getStatusCard}>refersh</button>
             </div>}
         </div>

@@ -1,11 +1,23 @@
+import { createContext, useState } from 'react'
 import './App.css'
+import LoginPannel from './component/LoginPannel'
+import Navbar from './component/navbar'
+import StatusCard from './component/StatusCard'
+const UserContext = createContext()
 
 function App() {
+  const [color, setColor] = useState("white")
+  const [info, setInfo] = useState({})
   return (
-    <>
-      
-    </>
+    <div className={color}>
+      <UserContext value={{ color, setColor, info, setInfo }}>
+        <Navbar />
+        <LoginPannel />
+        <StatusCard />
+      </UserContext>
+    </div>
+
   )
 }
 
-export default App
+export { App, UserContext }

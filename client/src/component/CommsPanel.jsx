@@ -15,7 +15,8 @@ function CommsPanel() {
             body: JSON.stringify({text:message})
         })
         setNewMsg(true)
-        const data = await res.json(res)
+        console.log(res);
+        // const data = await res.json(res)
     }
     return (
         <>
